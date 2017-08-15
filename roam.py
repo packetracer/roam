@@ -1,4 +1,6 @@
 import subprocess
+#import time
+import ctypes
 
 def detectRoam(BSSID):
 	roam = False
@@ -12,6 +14,7 @@ def detectRoam(BSSID):
 				if not (curBSSID == BSSID):
 					roam = True
 					print "Roam Detected\nOld BSSID: " + BSSID + "\nNew BSSID: " + curBSSID
+					ctypes.windll.user32.MessageBoxA(0, 'Host has roamed from base' + BSSID + '\nNew base station ID: ' + curBSSID,'ROAMING EVENT',0)
 					detectRoam(curBSSID)
 
 def initBSSID():					
